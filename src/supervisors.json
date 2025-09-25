@@ -1,0 +1,11 @@
+{
+  "regional": {
+    "SUR": { "name": "Guillermo Fossat", "email": "gfossat@laanonima.com.ar" }
+  },
+  "zonal": {
+    "TIERRA DEL FUEGO": { "name": "Maximiliano Villavicencio", "email": "mvillavicencio@laanonima.com.ar" },
+    "SANTA CRUZ NORTE": { "name": "Ramon Martinez", "email": "ramartinez@laanonima.com.ar" },
+    "SANTA CRUZ SUR":   { "name": "Marcos Lopez Delpero", "email": "mlopezde@laanonima.com.ar" },
+    "COMODORO RIVADAVIA": { "name": "Nelson Rocha", "email": "nrocha@laanonima.com.ar" }
+  }
+}

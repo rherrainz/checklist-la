@@ -1,0 +1,18 @@
+[
+  { "id": "SV-01", "label": "BUENAS PRACTICAS DE MERMA", "weight": 0.05, "percent": "5%", "detail": "Se ajusta a los procedimientos de recuento de control, registra las diferencias mediante TRF, se involucra en la busqueda y aplica medidas correctivas." },
+  { "id": "SV-02", "label": "ADM. DE PRODUCTOS C/CORTA FECHA DE APTITUD", "weight": 0.05, "percent": "5%", "detail": "Cumple el procedimiento en la detección, seguimiento, control de las dinamicas por art próximos a vencer. Se toma muestra de retiro de gondola y de dinamica de descuento." },
+  { "id": "SV-03", "label": "RESCATE DE ALIMENTOS", "weight": 0.10, "percent": "10%", "detail": "Cumple con el programa institucional a través de las donaciones y voluntariado." },
+  { "id": "SV-04", "label": "ABASTECIMIENTO / PRESENTACIÓN", "weight": 0.10, "percent": "10%", "detail": "Correcta utilización de Reposición Asistida, presentación en góndola y sin mercadería en trastienda/no a la venta. Verificación con TRF en trastienda." },
+  { "id": "SV-05", "label": "PRECIFICACION / SEÑALIZACIÓN", "weight": 0.07, "percent": "7%", "detail": "Cumplimiento de normas de precificación y promociones (muestra mínima de un pasillo). Señalización, decoración y comunicación institucional." },
+  { "id": "SV-06", "label": "DINAMICAS COMERCIALES", "weight": 0.08, "percent": "8%", "detail": "Presentación y mantenimiento de eventos según instructivos/definiciones comerciales (ej. ingresos suc.). Control de insert o vigentes." },
+  { "id": "SV-07", "label": "LIMPIEZA EDILICIA", "weight": 0.03, "percent": "3%", "detail": "Se involucra en la limpieza del local y mantiene según normas y procedimientos." },
+  { "id": "SV-08", "label": "SEGURIDAD ALIMENTARIA / 5S", "weight": 0.07, "percent": "7%", "detail": "Desempeño operativo y aplicación de métodos que aseguran cumplimiento y mejora continua." },
+  { "id": "SV-09", "label": "POM", "weight": 0.05, "percent": "5%", "detail": "Planilla actualizada; interpreta y busca mayores niveles de productividad. Semáforo APROBADO." },
+  { "id": "SV-10", "label": "TRASTIENDA / CAMARAS", "weight": 0.04, "percent": "4%", "detail": "Estado de orden, limpieza y sobre-stock de cámaras y trastiendas; productos sin quiebre a la venta." },
+  { "id": "SV-11", "label": "PLAN DE PRODUCCION", "weight": 0.04, "percent": "4%", "detail": "Ajuste de stock y mantenimiento del sector según Plan de Producción. Chequear 2 productos: exhibidos vs producidos." },
+  { "id": "SV-12", "label": "CUMPLIMIENTO DE ACUERDOS COMERCIALES", "weight": 0.04, "percent": "4%", "detail": "Cumplimiento de Repo Paga y mantenimiento de punteras, exhibiciones de cajas, etc. Revisar mínimo 6 contrataciones." },
+  { "id": "SV-13", "label": "ADMINISTRACIÓN DE LA SHyMA", "weight": 0.03, "percent": "3%", "detail": "Cumplimiento de Normas de Seguridad, Higiene y Medio Ambiente, EPP, salidas de emergencia, cartelería, etc." },
+  { "id": "SV-14", "label": "CATEGORY", "weight": 0.03, "percent": "3%", "detail": "Cumple con exhibiciones y actualizaciones impartidas por el departamento de Category. Elegir una categoría de control." },
+  { "id": "SV-15", "label": "GESTION NPS", "weight": 0.11, "percent": "11%", "detail": "Revisión de pizarra, evolución de resultados; evaluación de PAs y compromiso con la experiencia del cliente." },
+  { "id": "SV-16", "label": "PLAN DE ACCION , CUMPLIMIENTO", "weight": 0.11, "percent": "11%", "detail": "Avances de los compromisos asumidos en la visita anterior (expresados más abajo)." }
+]
