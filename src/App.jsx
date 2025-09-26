@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import ChecklistForm from "./ChecklistForm.jsx";
 import QuarterSummary from "./QuarterSummary.jsx";
 import branchesRaw from "./branches.json";
+import BrandLogo from "./BrandLogo.jsx";
 
 export default function App() {
   const [screen, setScreen] = useState("home"); // "home" | "new" | "edit" | "quarter"
@@ -20,8 +21,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-celeste-50 text-gray-900">
+      
       {screen === "home" && (
-        <div className="flex flex-col items-center justify-center min-h-screen gap-6 p-6">
+        <div className="flex flex-col items-center justify-top min-h-screen gap-6 p-6">
+          <BrandLogo className="w-[200px] h-[200px] md:w-[350px] md:h-[350px]" />
           <h1 className="text-3xl font-bold text-gray-900">
             Checklist de Visitas
           </h1>

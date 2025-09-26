@@ -1,11 +1,26 @@
 {
   "regional": {
-    "SUR": { "name": "Guillermo Fossat", "email": "gfossat@laanonima.com.ar" }
+    "SUR": { "name": "Guillermo Fossat", "email": "gfossat@laanonima.com.ar" },
+    "NORTE": { "name": "Mariano Cabral", "email": "mcabral@laanonima.com.ar" },
+    "PAMPA ANDINA": { "name": "José Luis Ochea", "email": "jochea@laanonima.com.ar" },
+    "CENTRO": { "name": "Gustavo Williams", "email": "gwillam@laanonima.com.ar" }
   },
   "zonal": {
     "TIERRA DEL FUEGO": { "name": "Maximiliano Villavicencio", "email": "mvillavicencio@laanonima.com.ar" },
     "SANTA CRUZ NORTE": { "name": "Ramon Martinez", "email": "ramartinez@laanonima.com.ar" },
-    "SANTA CRUZ SUR":   { "name": "Marcos Lopez Delpero", "email": "mlopezde@laanonima.com.ar" },
-    "COMODORO RIVADAVIA": { "name": "Nelson Rocha", "email": "nrocha@laanonima.com.ar" }
+    "SANTA CRUZ SUR": { "name": "Marcos Lopez Delpero", "email": "mlopezde@laanonima.com.ar" },
+    "COMODORO RIVADAVIA": { "name": "Nelson Rocha", "email": "nrocha@laanonima.com.ar" },
+
+    "NEUQUEN INTERIOR": { "name": "Jose Manuel Mancilla", "email": "josemancilla@laanonima.com.ar" },
+    "BARILOCHE": { "name": "Andres Eduardo Redelich", "email": "aredelich@laanonima.com.ar" },
+    "VIEDMA": { "name": "Sergio Damian Epherra", "email": "sepherra@laanonima.com.ar" },
+    "TRELEW": { "name": "Gustavo Diego Vitali", "email": "dvitali@laanonima.com.ar" },
+    "NEUQUEN CIUDAD": { "name": "Pablo Andres Camnasio", "email": "pcamnasio@laanonima.com.ar" },
+    "ESQUEL": { "name": "Oscar Diego Maly", "email": "omaly@laanonima.com.ar" },
+    "BUENOS AIRES": { "name": "Gabriel Gustavo Rothstein", "email": "grothste@laanonima.com.ar" },
+    "RIO NEGRO": { "name": "Luis Ernesto Gomez", "email": "lgomez@laanonima.com.ar" },
+    "LITORAL": { "name": "Roberto Carlos Siner", "email": "rcsiner@laanonima.com.ar" },
+    "LA PAMPA": { "name": "Hernan Alberto Riera", "email": "hriera@laanonima.com.ar" },
+    "CORDOBA - SANTA FE": { "name": "Jose Daniel Serrahima", "email": "jdserrahima@laanonima.com.ar" }
   }
 }

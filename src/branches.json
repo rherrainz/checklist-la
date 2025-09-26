@@ -1,49 +1,1016 @@
 [
-  { "code": "21", "name": "COMODORO RIVADAVIA", "zone": "COMODORO RIVADAVIA", "region": "SUR" },
-  { "code": "22", "name": "FILIAL SAN MARTIN", "zone": "COMODORO RIVADAVIA", "region": "SUR" },
-  { "code": "23", "name": "GRAL.MOSCONI KM.3", "zone": "COMODORO RIVADAVIA", "region": "SUR" },
-  { "code": "24", "name": "A.SERV.N 1 COM.RIVADAVIA", "zone": "COMODORO RIVADAVIA", "region": "SUR" },
-  { "code": "25", "name": "A.SERV.N 2 COM.RIVADAVIA", "zone": "COMODORO RIVADAVIA", "region": "SUR" },
-  { "code": "104", "name": "SARMIENTO", "zone": "COMODORO RIVADAVIA", "region": "SUR" },
-  { "code": "159", "name": "BARRIO 1008", "zone": "COMODORO RIVADAVIA", "region": "SUR" },
-  { "code": "179", "name": "RADA TILLY", "zone": "COMODORO RIVADAVIA", "region": "SUR" },
-  { "code": "218", "name": "COMODORO RIVADAVIA KM8", "zone": "COMODORO RIVADAVIA", "region": "SUR" },
-  { "code": "31", "name": "CALETA OLIVIA", "zone": "SANTA CRUZ NORTE", "region": "SUR" },
-  { "code": "32", "name": "CALETA OLIVIA 2", "zone": "SANTA CRUZ NORTE", "region": "SUR" },
-  { "code": "97", "name": "PUERTO DESEADO", "zone": "SANTA CRUZ NORTE", "region": "SUR" },
-  { "code": "145", "name": "PICO TRUNCADO", "zone": "SANTA CRUZ NORTE", "region": "SUR" },
-  { "code": "160", "name": "LAS HERAS", "zone": "SANTA CRUZ NORTE", "region": "SUR" },
-  { "code": "184", "name": "PIEDRA BUENA", "zone": "SANTA CRUZ NORTE", "region": "SUR" },
-  { "code": "186", "name": "PICO TRUNCADO 2", "zone": "SANTA CRUZ NORTE", "region": "SUR" },
-  { "code": "192", "name": "SAN JULIAN", "zone": "SANTA CRUZ NORTE", "region": "SUR" },
-  { "code": "197", "name": "GOBERNADOR GREGORES", "zone": "SANTA CRUZ NORTE", "region": "SUR" },
-  { "code": "214", "name": "PERITO MORENO", "zone": "SANTA CRUZ NORTE", "region": "SUR" },
-  { "code": "217", "name": "CALETA OLIVIA 3", "zone": "SANTA CRUZ NORTE", "region": "SUR" },
-  { "code": "263", "name": "PUERTO SANTA CRUZ", "zone": "SANTA CRUZ NORTE", "region": "SUR" },
-  { "code": "33", "name": "RIO GALLEGOS", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "43", "name": "AUTOSERVICIO R.GALLEGOS", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "72", "name": "AUTOSERVICIO 2 R.GALLEGOS", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "91", "name": "RIO GALLEGOS 4", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "124", "name": "GALLEGOS 5", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "131", "name": "EL CALAFATE", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "138", "name": "RIO TURBIO", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "161", "name": "CALAFATE II", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "183", "name": "RIO GALLEGOS 6", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "198", "name": "RIO GALLEGOS 7", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "199", "name": "RIO GALLEGOS 8", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "200", "name": "RIO GALLEGOS 9", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "204", "name": "28 DE NOVIEMBRE 2", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "205", "name": "RIO GALLEGOS 10", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "360", "name": "RIO GALLEGOS 11", "zone": "SANTA CRUZ SUR", "region": "SUR" },
-  { "code": "35", "name": "RIO GRANDE", "zone": "TIERRA DEL FUEGO", "region": "SUR" },
-  { "code": "36", "name": "AUTOSERVICIO RIO GRANDE", "zone": "TIERRA DEL FUEGO", "region": "SUR" },
-  { "code": "37", "name": "AUTOSERVICE 2 RIO GRANDE", "zone": "TIERRA DEL FUEGO", "region": "SUR" },
-  { "code": "38", "name": "USHUAIA", "zone": "TIERRA DEL FUEGO", "region": "SUR" },
-  { "code": "56", "name": "AUTOSERVICIO USHUAIA", "zone": "TIERRA DEL FUEGO", "region": "SUR" },
-  { "code": "74", "name": "RIO GRANDE 4", "zone": "TIERRA DEL FUEGO", "region": "SUR" },
-  { "code": "75", "name": "USHUAIA 3", "zone": "TIERRA DEL FUEGO", "region": "SUR" },
-  { "code": "141", "name": "USHUAIA 4", "zone": "TIERRA DEL FUEGO", "region": "SUR" },
-  { "code": "166", "name": "USHUAIA 5", "zone": "TIERRA DEL FUEGO", "region": "SUR" },
-  { "code": "211", "name": "TOLHUIN", "zone": "TIERRA DEL FUEGO", "region": "SUR" },
-  { "code": "220", "name": "RIO GRANDE 5", "zone": "TIERRA DEL FUEGO", "region": "SUR" }
+  {
+    "code": "4",
+    "name": "BARILOCHE 3",
+    "zone": "BARILOCHE",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "6",
+    "name": "BAHIA BLANCA",
+    "zone": "NEUQUEN CIUDAD",
+    "region": "CENTRO"
+  },
+  {
+    "code": "7",
+    "name": "CIPOLLETTI",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "8",
+    "name": "BARILOCHE",
+    "zone": "BARILOCHE",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "9",
+    "name": "BARILOCHE 2",
+    "zone": "BARILOCHE",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "10",
+    "name": "GENERAL ROCA",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "11",
+    "name": "VIEDMA",
+    "zone": "VIEDMA",
+    "region": "CENTRO"
+  },
+  {
+    "code": "12",
+    "name": "TRELEW",
+    "zone": "TRELEW",
+    "region": "CENTRO"
+  },
+  {
+    "code": "13",
+    "name": "RAWSON",
+    "zone": "TRELEW",
+    "region": "CENTRO"
+  },
+  {
+    "code": "14",
+    "name": "PUERTO MADRYN",
+    "zone": "TRELEW",
+    "region": "CENTRO"
+  },
+  {
+    "code": "15",
+    "name": "ESQUEL",
+    "zone": "ESQUEL",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "16",
+    "name": "TRELEW FONTANA",
+    "zone": "TRELEW",
+    "region": "CENTRO"
+  },
+  {
+    "code": "17",
+    "name": "AUTO SERVICE ESQUEL",
+    "zone": "ESQUEL",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "18",
+    "name": "EL BOLSON",
+    "zone": "ESQUEL",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "21",
+    "name": "COMODORO RIVADAVIA",
+    "zone": "COMODORO RIVADAVIA",
+    "region": "SUR"
+  },
+  {
+    "code": "22",
+    "name": "FILIAL SAN MARTIN",
+    "zone": "COMODORO RIVADAVIA",
+    "region": "SUR"
+  },
+  {
+    "code": "23",
+    "name": "GRAL.MOSCONI KM.3",
+    "zone": "COMODORO RIVADAVIA",
+    "region": "SUR"
+  },
+  {
+    "code": "24",
+    "name": "A.SERV.N 1 COM.RIVADAVIA",
+    "zone": "COMODORO RIVADAVIA",
+    "region": "SUR"
+  },
+  {
+    "code": "25",
+    "name": "A.SERV.N 2 COM.RIVADAVIA",
+    "zone": "COMODORO RIVADAVIA",
+    "region": "SUR"
+  },
+  {
+    "code": "31",
+    "name": "CALETA OLIVIA",
+    "zone": "SANTA CRUZ NORTE",
+    "region": "SUR"
+  },
+  {
+    "code": "32",
+    "name": "CALETA OLIVIA 2",
+    "zone": "SANTA CRUZ NORTE",
+    "region": "SUR"
+  },
+  {
+    "code": "33",
+    "name": "RIO GALLEGOS",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "35",
+    "name": "RIO GRANDE",
+    "zone": "TIERRA DEL FUEGO",
+    "region": "SUR"
+  },
+  {
+    "code": "36",
+    "name": "AUTOSERVICIO RIO GRANDE",
+    "zone": "TIERRA DEL FUEGO",
+    "region": "SUR"
+  },
+  {
+    "code": "37",
+    "name": "AUTOSERVICE 2 RIO GRANDE",
+    "zone": "TIERRA DEL FUEGO",
+    "region": "SUR"
+  },
+  {
+    "code": "38",
+    "name": "USHUAIA",
+    "zone": "TIERRA DEL FUEGO",
+    "region": "SUR"
+  },
+  {
+    "code": "42",
+    "name": "AUTOSERVICIO GRAL ROCA 2",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "43",
+    "name": "AUTOSERVICIO R.GALLEGOS",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "44",
+    "name": "AUTOSERV.3 TRELEW",
+    "zone": "TRELEW",
+    "region": "CENTRO"
+  },
+  {
+    "code": "45",
+    "name": "AUTOSERVICIO PTO.MADRYN",
+    "zone": "TRELEW",
+    "region": "CENTRO"
+  },
+  {
+    "code": "46",
+    "name": "SAN ANTONIO OESTE",
+    "zone": "VIEDMA",
+    "region": "CENTRO"
+  },
+  {
+    "code": "47",
+    "name": "VIEDMA 2",
+    "zone": "VIEDMA",
+    "region": "CENTRO"
+  },
+  {
+    "code": "48",
+    "name": "VILLA REGINA",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "50",
+    "name": "ZAPALA",
+    "zone": "NEUQUEN INTERIOR",
+    "region": "CENTRO"
+  },
+  {
+    "code": "51",
+    "name": "CIPOLLETTI 2",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "53",
+    "name": "ALLEN",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "55",
+    "name": "CHACABUCO",
+    "zone": "BUENOS AIRES",
+    "region": "NORTE"
+  },
+  {
+    "code": "56",
+    "name": "AUTOSERVICIO USHUAIA",
+    "zone": "TIERRA DEL FUEGO",
+    "region": "SUR"
+  },
+  {
+    "code": "57",
+    "name": "CHIVILCOY",
+    "zone": "BUENOS AIRES",
+    "region": "NORTE"
+  },
+  {
+    "code": "58",
+    "name": "BRAGADO",
+    "zone": "BUENOS AIRES",
+    "region": "NORTE"
+  },
+  {
+    "code": "67",
+    "name": "VENADO TUERTO",
+    "zone": "CORDOBA - SANTA FE",
+    "region": "NORTE"
+  },
+  {
+    "code": "68",
+    "name": "HIPERMERCADO NEUQUEN",
+    "zone": "NEUQUEN CIUDAD",
+    "region": "CENTRO"
+  },
+  {
+    "code": "69",
+    "name": "C. DE PATAGONES",
+    "zone": "VIEDMA",
+    "region": "CENTRO"
+  },
+  {
+    "code": "72",
+    "name": "AUTOSERVICIO 2 R.GALLEGOS",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "74",
+    "name": "RIO GRANDE 4",
+    "zone": "TIERRA DEL FUEGO",
+    "region": "SUR"
+  },
+  {
+    "code": "75",
+    "name": "USHUAIA 3",
+    "zone": "TIERRA DEL FUEGO",
+    "region": "SUR"
+  },
+  {
+    "code": "76",
+    "name": "PLAZA HUINCUL",
+    "zone": "NEUQUEN INTERIOR",
+    "region": "CENTRO"
+  },
+  {
+    "code": "84",
+    "name": "BARILOCHE 4",
+    "zone": "BARILOCHE",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "85",
+    "name": "JUNIN",
+    "zone": "BUENOS AIRES",
+    "region": "NORTE"
+  },
+  {
+    "code": "89",
+    "name": "COLON",
+    "zone": "BUENOS AIRES",
+    "region": "NORTE"
+  },
+  {
+    "code": "90",
+    "name": "SANTA ROSA",
+    "zone": "LA PAMPA",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "91",
+    "name": "RIO GALLEGOS 4",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "92",
+    "name": "GENERAL ROCA 3",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "96",
+    "name": "SALTO",
+    "zone": "BUENOS AIRES",
+    "region": "NORTE"
+  },
+  {
+    "code": "97",
+    "name": "PUERTO DESEADO",
+    "zone": "SANTA CRUZ NORTE",
+    "region": "SUR"
+  },
+  {
+    "code": "100",
+    "name": "ARRECIFES",
+    "zone": "BUENOS AIRES",
+    "region": "NORTE"
+  },
+  {
+    "code": "101",
+    "name": "LINCOLN",
+    "zone": "BUENOS AIRES",
+    "region": "NORTE"
+  },
+  {
+    "code": "102",
+    "name": "SAN MARTIN DE LOS ANDES",
+    "zone": "ESQUEL",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "103",
+    "name": "TRENQUE LAUQUEN - SAIEP",
+    "zone": "LA PAMPA",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "104",
+    "name": "SARMIENTO",
+    "zone": "COMODORO RIVADAVIA",
+    "region": "SUR"
+  },
+  {
+    "code": "105",
+    "name": "LURO",
+    "zone": "LA PAMPA",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "109",
+    "name": "GENERAL PICO",
+    "zone": "LA PAMPA",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "114",
+    "name": "RUFINO",
+    "zone": "CORDOBA - SANTA FE",
+    "region": "NORTE"
+  },
+  {
+    "code": "117",
+    "name": "AMEGHINO",
+    "zone": "LA PAMPA",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "118",
+    "name": "CARLOS CASARES",
+    "zone": "BUENOS AIRES",
+    "region": "NORTE"
+  },
+  {
+    "code": "119",
+    "name": "LABOULAYE",
+    "zone": "CORDOBA - SANTA FE",
+    "region": "NORTE"
+  },
+  {
+    "code": "122",
+    "name": "LISANDRO DE LA TORRE",
+    "zone": "LA PAMPA",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "124",
+    "name": "GALLEGOS 5",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "125",
+    "name": "PEHUAJO",
+    "zone": "BUENOS AIRES",
+    "region": "NORTE"
+  },
+  {
+    "code": "127",
+    "name": "DELTA VILLEGAS",
+    "zone": "LA PAMPA",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "131",
+    "name": "EL CALAFATE",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "134",
+    "name": "TRELEW 25 DE MAYO",
+    "zone": "TRELEW",
+    "region": "CENTRO"
+  },
+  {
+    "code": "138",
+    "name": "RIO TURBIO",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "141",
+    "name": "USHUAIA 4",
+    "zone": "TIERRA DEL FUEGO",
+    "region": "SUR"
+  },
+  {
+    "code": "143",
+    "name": "LUCERO SANTA ROSA",
+    "zone": "LA PAMPA",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "145",
+    "name": "PICO TRUNCADO",
+    "zone": "SANTA CRUZ NORTE",
+    "region": "SUR"
+  },
+  {
+    "code": "147",
+    "name": "JUNIN DE LOS ANDES",
+    "zone": "ESQUEL",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "148",
+    "name": "AMERICA II",
+    "zone": "LA PAMPA",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "149",
+    "name": "INTENDENTE ALVEAR",
+    "zone": "LA PAMPA",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "150",
+    "name": "QUIJOTE CENTRO",
+    "zone": "CORDOBA - SANTA FE",
+    "region": "NORTE"
+  },
+  {
+    "code": "151",
+    "name": "QUIJOTE MAX 1",
+    "zone": "CORDOBA - SANTA FE",
+    "region": "NORTE"
+  },
+  {
+    "code": "152",
+    "name": "QUIJOTE MAX2",
+    "zone": "CORDOBA - SANTA FE",
+    "region": "NORTE"
+  },
+  {
+    "code": "153",
+    "name": "QUIJOTE ESPERANZA",
+    "zone": "LITORAL",
+    "region": "NORTE"
+  },
+  {
+    "code": "156",
+    "name": "QUIJOTE SAN JORGE",
+    "zone": "CORDOBA - SANTA FE",
+    "region": "NORTE"
+  },
+  {
+    "code": "159",
+    "name": "BARRIO 1008",
+    "zone": "COMODORO RIVADAVIA",
+    "region": "SUR"
+  },
+  {
+    "code": "160",
+    "name": "LAS HERAS",
+    "zone": "SANTA CRUZ NORTE",
+    "region": "SUR"
+  },
+  {
+    "code": "161",
+    "name": "CALAFATE II",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "162",
+    "name": "BELGRANO 1",
+    "zone": "NEUQUEN CIUDAD",
+    "region": "CENTRO"
+  },
+  {
+    "code": "163",
+    "name": "SIERRA GRANDE",
+    "zone": "VIEDMA",
+    "region": "CENTRO"
+  },
+  {
+    "code": "164",
+    "name": "CIPOLLETTI 3",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "165",
+    "name": "EL BOLSON 2",
+    "zone": "ESQUEL",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "166",
+    "name": "USHUAIA 5",
+    "zone": "TIERRA DEL FUEGO",
+    "region": "SUR"
+  },
+  {
+    "code": "167",
+    "name": "PUERTO MADRYN 3",
+    "zone": "TRELEW",
+    "region": "CENTRO"
+  },
+  {
+    "code": "168",
+    "name": "TREVELIN",
+    "zone": "ESQUEL",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "171",
+    "name": "SAN JUSTO",
+    "zone": "LITORAL",
+    "region": "NORTE"
+  },
+  {
+    "code": "172",
+    "name": "RINCON DE LOS SAUCES",
+    "zone": "NEUQUEN INTERIOR",
+    "region": "CENTRO"
+  },
+  {
+    "code": "173",
+    "name": "JUNIN 2",
+    "zone": "BUENOS AIRES",
+    "region": "NORTE"
+  },
+  {
+    "code": "175",
+    "name": "BARILOCHE 5",
+    "zone": "BARILOCHE",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "177",
+    "name": "V.LA ANGOSTURA 2",
+    "zone": "BARILOCHE",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "179",
+    "name": "RADA TILLY",
+    "zone": "COMODORO RIVADAVIA",
+    "region": "SUR"
+  },
+  {
+    "code": "181",
+    "name": "PLAYA UNION",
+    "zone": "TRELEW",
+    "region": "CENTRO"
+  },
+  {
+    "code": "182",
+    "name": "PLOTTIER",
+    "zone": "NEUQUEN INTERIOR",
+    "region": "CENTRO"
+  },
+  {
+    "code": "183",
+    "name": "RIO GALLEGOS 6",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "184",
+    "name": "PIEDRA BUENA",
+    "zone": "SANTA CRUZ NORTE",
+    "region": "SUR"
+  },
+  {
+    "code": "185",
+    "name": "AZUL",
+    "zone": "BUENOS AIRES",
+    "region": "NORTE"
+  },
+  {
+    "code": "186",
+    "name": "PICO TRUNCADO 2",
+    "zone": "SANTA CRUZ NORTE",
+    "region": "SUR"
+  },
+  {
+    "code": "187",
+    "name": "CASTEX 2",
+    "zone": "LA PAMPA",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "188",
+    "name": "CATRIEL",
+    "zone": "NEUQUEN INTERIOR",
+    "region": "CENTRO"
+  },
+  {
+    "code": "189",
+    "name": "ESQUEL 3",
+    "zone": "ESQUEL",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "192",
+    "name": "SAN JULIAN",
+    "zone": "SANTA CRUZ NORTE",
+    "region": "SUR"
+  },
+  {
+    "code": "195",
+    "name": "GENERAL ROCA 4",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "196",
+    "name": "STELLA MARIS",
+    "zone": "LA PAMPA",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "197",
+    "name": "GOBERNADOR GREGORES",
+    "zone": "SANTA CRUZ NORTE",
+    "region": "SUR"
+  },
+  {
+    "code": "198",
+    "name": "RIO GALLEGOS 7",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "199",
+    "name": "RIO GALLEGOS 8",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "200",
+    "name": "RIO GALLEGOS 9",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "201",
+    "name": "MERCEDES",
+    "zone": "BUENOS AIRES",
+    "region": "NORTE"
+  },
+  {
+    "code": "202",
+    "name": "SANTA ROSA V",
+    "zone": "LA PAMPA",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "203",
+    "name": "TRENQUE LAUQUEN 3",
+    "zone": "LA PAMPA",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "204",
+    "name": "28 DE NOVIEMBRE 2",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "205",
+    "name": "RIO GALLEGOS 10",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "206",
+    "name": "GOYA",
+    "zone": "LITORAL",
+    "region": "NORTE"
+  },
+  {
+    "code": "207",
+    "name": "GAIMAN",
+    "zone": "TRELEW",
+    "region": "CENTRO"
+  },
+  {
+    "code": "208",
+    "name": "LAS GRUTAS",
+    "zone": "VIEDMA",
+    "region": "CENTRO"
+  },
+  {
+    "code": "211",
+    "name": "TOLHUIN",
+    "zone": "TIERRA DEL FUEGO",
+    "region": "SUR"
+  },
+  {
+    "code": "212",
+    "name": "SAN MARTIN DE LOS ANDES II",
+    "zone": "ESQUEL",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "213",
+    "name": "CENTENARIO 1",
+    "zone": "NEUQUEN INTERIOR",
+    "region": "CENTRO"
+  },
+  {
+    "code": "214",
+    "name": "PERITO MORENO",
+    "zone": "SANTA CRUZ NORTE",
+    "region": "SUR"
+  },
+  {
+    "code": "215",
+    "name": "RIO COLORADO",
+    "zone": "VIEDMA",
+    "region": "CENTRO"
+  },
+  {
+    "code": "216",
+    "name": "CHOELE CHOEL",
+    "zone": "VIEDMA",
+    "region": "CENTRO"
+  },
+  {
+    "code": "217",
+    "name": "CALETA OLIVIA 3",
+    "zone": "SANTA CRUZ NORTE",
+    "region": "SUR"
+  },
+  {
+    "code": "218",
+    "name": "COMODORO RIVADAVIA KM8",
+    "zone": "COMODORO RIVADAVIA",
+    "region": "SUR"
+  },
+  {
+    "code": "220",
+    "name": "RIO GRANDE 5",
+    "zone": "TIERRA DEL FUEGO",
+    "region": "SUR"
+  },
+  {
+    "code": "221",
+    "name": "MORTEROS",
+    "zone": "CORDOBA - SANTA FE",
+    "region": "NORTE"
+  },
+  {
+    "code": "225",
+    "name": "AVD SAN JUAN",
+    "zone": "NEUQUEN CIUDAD",
+    "region": "CENTRO"
+  },
+  {
+    "code": "226",
+    "name": "NEUQUEN CENTRO",
+    "zone": "NEUQUEN CIUDAD",
+    "region": "CENTRO"
+  },
+  {
+    "code": "228",
+    "name": "CUTRAL CO 2",
+    "zone": "NEUQUEN INTERIOR",
+    "region": "CENTRO"
+  },
+  {
+    "code": "229",
+    "name": "NEUQUEN OESTE 2",
+    "zone": "NEUQUEN CIUDAD",
+    "region": "CENTRO"
+  },
+  {
+    "code": "230",
+    "name": "AUTOSERVICIO ZAPALA 2",
+    "zone": "NEUQUEN INTERIOR",
+    "region": "CENTRO"
+  },
+  {
+    "code": "232",
+    "name": "FAVA",
+    "zone": "NEUQUEN CIUDAD",
+    "region": "CENTRO"
+  },
+  {
+    "code": "233",
+    "name": "BELGRANO 3",
+    "zone": "NEUQUEN CIUDAD",
+    "region": "CENTRO"
+  },
+  {
+    "code": "234",
+    "name": "AUTOSERVICIO PLOTTIER 2",
+    "zone": "NEUQUEN INTERIOR",
+    "region": "CENTRO"
+  },
+  {
+    "code": "235",
+    "name": "ALDERETE",
+    "zone": "NEUQUEN CIUDAD",
+    "region": "CENTRO"
+  },
+  {
+    "code": "236",
+    "name": "NEUQUEN OESTE 1",
+    "zone": "NEUQUEN CIUDAD",
+    "region": "CENTRO"
+  },
+  {
+    "code": "237",
+    "name": "ALTA BARDA",
+    "zone": "NEUQUEN CIUDAD",
+    "region": "CENTRO"
+  },
+  {
+    "code": "238",
+    "name": "AUTOSERVICIO CIPOLLETTI 4",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "239",
+    "name": "AVDA TRABAJADOR",
+    "zone": "NEUQUEN CIUDAD",
+    "region": "CENTRO"
+  },
+  {
+    "code": "240",
+    "name": "BELGRANO 2",
+    "zone": "NEUQUEN CIUDAD",
+    "region": "CENTRO"
+  },
+  {
+    "code": "241",
+    "name": "GRAL ROCA CENTRO 5",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "242",
+    "name": "AUTOSERVICIO CINCO SALTOS 2",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "243",
+    "name": "AUTOSERVICIO CIPOLLETTI 5",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "246",
+    "name": "AUTOSERVICIO VILLA REGINA 2",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "247",
+    "name": "AUTOSERVICIO ZAPALA 3",
+    "zone": "NEUQUEN INTERIOR",
+    "region": "CENTRO"
+  },
+  {
+    "code": "248",
+    "name": "ANTARTIDA ARGENTINA",
+    "zone": "NEUQUEN CIUDAD",
+    "region": "CENTRO"
+  },
+  {
+    "code": "257",
+    "name": "LAGO PUELO",
+    "zone": "ESQUEL",
+    "region": "PAMPA ANDINA"
+  },
+  {
+    "code": "259",
+    "name": "CUTRAL CO",
+    "zone": "NEUQUEN INTERIOR",
+    "region": "CENTRO"
+  },
+  {
+    "code": "260",
+    "name": "9 DE JULIO",
+    "zone": "BUENOS AIRES",
+    "region": "NORTE"
+  },
+  {
+    "code": "261",
+    "name": "SUNCHALES",
+    "zone": "CORDOBA - SANTA FE",
+    "region": "NORTE"
+  },
+  {
+    "code": "263",
+    "name": "PUERTO SANTA CRUZ",
+    "zone": "SANTA CRUZ NORTE",
+    "region": "SUR"
+  },
+  {
+    "code": "264",
+    "name": "MARCOS JUAREZ",
+    "zone": "CORDOBA - SANTA FE",
+    "region": "NORTE"
+  },
+  {
+    "code": "265",
+    "name": "CINCO SALTOS 1",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  },
+  {
+    "code": "266",
+    "name": "ANELO",
+    "zone": "NEUQUEN INTERIOR",
+    "region": "CENTRO"
+  },
+  {
+    "code": "351",
+    "name": "ARROYITO",
+    "zone": "CORDOBA - SANTA FE",
+    "region": "NORTE"
+  },
+  {
+    "code": "356",
+    "name": "CENTENARIO II",
+    "zone": "NEUQUEN INTERIOR",
+    "region": "CENTRO"
+  },
+  {
+    "code": "357",
+    "name": "SAN PATRICIO DEL CHAÑAR",
+    "zone": "NEUQUEN INTERIOR",
+    "region": "CENTRO"
+  },
+  {
+    "code": "359",
+    "name": "ESPERANZA II",
+    "zone": "LITORAL",
+    "region": "NORTE"
+  },
+  {
+    "code": "360",
+    "name": "RIO GALLEGOS 11",
+    "zone": "SANTA CRUZ SUR",
+    "region": "SUR"
+  },
+  {
+    "code": "361",
+    "name": "BELLA VISTA",
+    "zone": "LITORAL",
+    "region": "NORTE"
+  },
+  {
+    "code": "363",
+    "name": "FERNANDEZ ORO",
+    "zone": "RIO NEGRO",
+    "region": "CENTRO"
+  }
 ]

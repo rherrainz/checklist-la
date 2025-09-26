@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import branchesData from "./branches.json";
 import templateData from "./template.json";
 import supervisorsMap from "./supervisors.json";
+import BrandLogo from "./BrandLogo.jsx";
 
 const API_URL = import.meta.env.VITE_API_URL; // Web App de Apps Script
 
@@ -9,7 +10,12 @@ const API_URL = import.meta.env.VITE_API_URL; // Web App de Apps Script
 const InfoIcon = ({ className = "w-5 h-5" }) => (
   <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
-    <path d="M12 11v6m0-10h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    <path
+      d="M12 11v6m0-10h.01"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
   </svg>
 );
 
@@ -48,26 +54,21 @@ export default function ChecklistForm({ mode, onBack }) {
   const [action, setAction] = useState("save"); // "save" | "send"
 
   // Carga base: sucursales + plantilla
-  useEffect(() => {
-    const sorted = [...branchesData].sort(
-      (a, b) =>
-        (a.region || "").localeCompare(b.region || "") ||
-        (a.zone || "").localeCompare(b.zone || "") ||
-        (a.name || "").localeCompare(b.name || "")
-    );
-    setBranches(sorted);
+useEffect(() => {
+  const sorted = [...branchesData].sort((a, b) =>
+    String(a.code).localeCompare(String(b.code), "es", { numeric: true })
+  );
+  setBranches(sorted);
 
-    const def = sorted[0];
-    setBranchCode(def?.code || "");
-    setBranchObj(def || null);
+  const def = sorted[0];
+  setBranchCode(def?.code || "");
+  setBranchObj(def || null);
 
-    // plantilla: solo score (sin note por ítem)
-    setItems(templateData.map((d) => ({ ...d, score: 0 })));
-    setObservations([]); // vacío por defecto
-
-    setPeriod(getCurrentPeriod());
-    setLoading(false);
-  }, []);
+  setItems(templateData.map((d) => ({ ...d, score: 0 })));
+  setObservations([]);
+  setPeriod(getCurrentPeriod());
+  setLoading(false);
+}, []);
 
   // Sync branchObj
   useEffect(() => {
@@ -178,7 +179,7 @@ export default function ChecklistForm({ mode, onBack }) {
     if (!API_URL) return "Falta VITE_API_URL en .env";
     if (!branchObj) return "Elegí una sucursal";
     if (!supervisor.name || !supervisor.email)
-      return "Supervisor inválido (no se encontró Gerente Zonal para la sucursal)";
+      return "Seleccioná Zonal o Regional (supervisor inválido)";
     for (const it of items) {
       const sc = Number(it.score);
       if (Number.isNaN(sc) || sc < 0 || sc > 10) {
@@ -243,30 +244,44 @@ export default function ChecklistForm({ mode, onBack }) {
 
   return (
     <div className="p-4 max-w-5xl mx-auto">
-      <button onClick={onBack} className="mb-4 text-celeste-700 hover:underline">
+      <button
+        onClick={onBack}
+        className="mb-4 text-celeste-700 hover:underline"
+      >
         ← Volver
       </button>
 
-      <h2 className="text-xl font-bold text-reflex mb-4">
-        {mode === "new" ? "Nuevo checklist" : "Ver / Editar checklist"}
-      </h2>
+{/* Título principal con sucursal actual */}
+<BrandLogo className="w-10 h-10 md:w-12 md:h-12" />
+<h1 className="text-2xl font-extrabold text-reflex mb-1">
+  {branchObj
+    ? `${branchObj.code} — ${branchObj.name} · ${branchObj.zone} · ${branchObj.region}`
+    : "Seleccioná una sucursal"}
+</h1>
+
+<h2 className="text-xl font-bold text-reflex mb-4">
+  {mode === "new" ? "Nuevo checklist" : "Ver / Editar checklist"}
+</h2>
 
       {/* Filtros */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-        <div>
-          <label className="block mb-1 font-semibold">Sucursal</label>
-          <select
-            value={branchCode}
-            onChange={(e) => setBranchCode(e.target.value)}
-            className="border rounded p-2 w-full"
-          >
-            {branches.map((b) => (
-              <option key={b.code} value={b.code}>
-                {b.region} / {b.zone} — {b.code} {b.name}
-              </option>
-            ))}
-          </select>
-        </div>
+  <div>
+    <label className="block mb-1 font-semibold">Sucursal</label>
+    <select
+      value={branchCode}
+      onChange={(e) => setBranchCode(e.target.value)}
+      className="border rounded p-2 w-full"
+    >
+      {branches.map((b) => (
+        <option key={b.code} value={b.code}>
+          {b.code} — {b.name} | {b.zone} | {b.region}
+        </option>
+      ))}
+    </select>
+    <p className="text-xs text-gray-500 mt-1">
+      Ordenado por código de sucursal
+    </p>
+  </div>
         <div>
           <label className="block mb-1 font-semibold">Año</label>
           <input
@@ -317,7 +332,6 @@ export default function ChecklistForm({ mode, onBack }) {
         <div>
           <label className="block mb-1 font-semibold">Supervisor</label>
           <div className="flex items-center gap-4 mb-2">
-            {/* Mostramos sólo Zonal, dejando la lógica viva */}
             <label className="inline-flex items-center gap-2">
               <input
                 type="radio"
@@ -327,8 +341,8 @@ export default function ChecklistForm({ mode, onBack }) {
               />
               <span>Gerente Zonal</span>
             </label>
-            {/* Regional oculto para posibles futuros cambios */}
-            {/* <label className="inline-flex items-center gap-2 hidden">
+
+            <label className="inline-flex items-center gap-2">
               <input
                 type="radio"
                 value="regional"
@@ -336,7 +350,7 @@ export default function ChecklistForm({ mode, onBack }) {
                 onChange={(e) => setSupType(e.target.value)}
               />
               <span>Gerente Regional</span>
-            </label> */}
+            </label>
           </div>
           <div className="p-3 border rounded bg-celeste-50">
             <div className="text-sm text-gray-700">
@@ -573,7 +587,10 @@ export default function ChecklistForm({ mode, onBack }) {
           <p className="text-lg font-bold mb-4">Puntaje final: {total}</p>
 
           <div className="flex gap-3 flex-wrap">
-            <button onClick={() => setStep("edit")} className="px-4 py-2 border rounded">
+            <button
+              onClick={() => setStep("edit")}
+              className="px-4 py-2 border rounded"
+            >
               Volver a editar
             </button>
             <button
@@ -581,7 +598,9 @@ export default function ChecklistForm({ mode, onBack }) {
               disabled={sending}
               className="px-6 py-3 bg-gray-800 text-white rounded-xl hover:bg-gray-900"
             >
-              {sending && action === "save" ? "Guardando…" : "Guardar evaluación"}
+              {sending && action === "save"
+                ? "Guardando…"
+                : "Guardar evaluación"}
             </button>
             <button
               onClick={() => submit("send")}
