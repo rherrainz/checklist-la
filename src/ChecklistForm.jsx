@@ -1,15 +1,36 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import branchesData from "./branches.json";
 import templateData from "./template.json";
 import supervisorsMap from "./supervisors.json";
 
 const API_URL = import.meta.env.VITE_API_URL; // Web App de Apps Script
 
+const MONTHS_ES = [
+  "",
+  "Enero",
+  "Febrero",
+  "Marzo",
+  "Abril",
+  "Mayo",
+  "Junio",
+  "Julio",
+  "Agosto",
+  "Septiembre",
+  "Octubre",
+  "Noviembre",
+  "Diciembre",
+];
+
 // Ícono info (SVG simple)
 const InfoIcon = ({ className = "w-5 h-5" }) => (
   <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
-    <path d="M12 11v6m0-10h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    <path
+      d="M12 11v6m0-10h.01"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
   </svg>
 );
 
@@ -30,6 +51,8 @@ export default function ChecklistForm({ mode, onBack }) {
   const [branches, setBranches] = useState([]);
   const [branchCode, setBranchCode] = useState("");
   const [branchObj, setBranchObj] = useState(null);
+  const [exportEnabled, setExportEnabled] = useState(false);
+  const reviewRef = useRef(null);
 
   // NUEVO: selects encadenados
   const [region, setRegion] = useState("");
@@ -82,7 +105,11 @@ export default function ChecklistForm({ mode, onBack }) {
 
   const zones = useMemo(() => {
     if (!region) return [];
-    return [...new Set(branches.filter((b) => b.region === region).map((b) => b.zone))].sort();
+    return [
+      ...new Set(
+        branches.filter((b) => b.region === region).map((b) => b.zone)
+      ),
+    ].sort();
   }, [branches, region]);
 
   const sucursales = useMemo(() => {
@@ -275,6 +302,10 @@ export default function ChecklistForm({ mode, onBack }) {
         mode: "no-cors",
         body: JSON.stringify(payload),
       });
+
+      // ✅ habilitar exportación si no hubo error
+      setExportEnabled(true);
+
       if (kind === "send") {
         alert(
           willSend
@@ -292,12 +323,44 @@ export default function ChecklistForm({ mode, onBack }) {
     }
   }
 
+  async function exportPDF() {
+    const { default: html2pdf } = await import("html2pdf.js");
+    const el = reviewRef.current;
+    if (!el) return alert("Entrá a la pestaña Revisión antes de exportar.");
+
+    const filename = `Checklist_${branchObj?.code || "SUC"}_${period.year}-Q${
+      period.quarter
+    }-M${period.month}.pdf`;
+
+    const opt = {
+      margin: 10,
+      filename,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        windowWidth: el.scrollWidth, // usa el ancho real para no cortar
+      },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      pagebreak: { mode: ["css", "avoid-all", "legacy"] },
+    };
+
+    html2pdf().set(opt).from(el).save();
+  }
+
   if (loading) return <div className="p-6">Cargando…</div>;
   const months = monthsForQuarter(Number(period.quarter));
 
+  function canProceedToReview() {
+    return Boolean(branchObj && supervisor?.name && supervisor?.email);
+  }
+
   return (
     <div className="p-4 max-w-5xl mx-auto">
-      <button onClick={onBack} className="mb-4 text-celeste-700 hover:underline">
+      <button
+        onClick={onBack}
+        className="mb-4 text-celeste-700 hover:underline"
+      >
         ← Volver
       </button>
 
@@ -329,7 +392,9 @@ export default function ChecklistForm({ mode, onBack }) {
           >
             <option value="">-- Elegí Región --</option>
             {regions.map((r) => (
-              <option key={r} value={r}>{r}</option>
+              <option key={r} value={r}>
+                {r}
+              </option>
             ))}
           </select>
         </div>
@@ -348,7 +413,9 @@ export default function ChecklistForm({ mode, onBack }) {
           >
             <option value="">-- Elegí Zona --</option>
             {zones.map((z) => (
-              <option key={z} value={z}>{z}</option>
+              <option key={z} value={z}>
+                {z}
+              </option>
             ))}
           </select>
         </div>
@@ -415,7 +482,9 @@ export default function ChecklistForm({ mode, onBack }) {
             className="border rounded p-2 w-full"
           >
             {months.map((m) => (
-              <option key={m} value={m}>{m}</option>
+              <option key={m} value={m}>
+                {m}
+              </option>
             ))}
           </select>
         </div>
@@ -449,17 +518,28 @@ export default function ChecklistForm({ mode, onBack }) {
           </div>
           <div className="p-3 border rounded bg-celeste-50">
             <div className="text-sm text-gray-700">
-              <div><b>Nombre:</b> {supervisor.name || "-"}</div>
-              <div><b>Email:</b> {supervisor.email || "-"}</div>
+              <div>
+                <b>Nombre:</b> {supervisor.name || "-"}
+              </div>
+              <div>
+                <b>Email:</b> {supervisor.email || "-"}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Panel Sucursal */}
         <div className="text-sm text-gray-700 p-3 border rounded bg-white">
-          <div><b>Región:</b> {branchObj?.region || "-"}</div>
-          <div><b>Zona:</b> {branchObj?.zone || "-"}</div>
-          <div><b>Sucursal:</b> {branchObj ? `${branchObj.code} ${branchObj.name}` : "-"}</div>
+          <div>
+            <b>Región:</b> {branchObj?.region || "-"}
+          </div>
+          <div>
+            <b>Zona:</b> {branchObj?.zone || "-"}
+          </div>
+          <div>
+            <b>Sucursal:</b>{" "}
+            {branchObj ? `${branchObj.code} ${branchObj.name}` : "-"}
+          </div>
         </div>
       </div>
 
@@ -472,7 +552,9 @@ export default function ChecklistForm({ mode, onBack }) {
                 <th className="border px-2 py-1">ID</th>
                 <th className="border px-2 py-1">Ítem</th>
                 <th className="border px-2 py-1 w-12 text-center">Info</th>
-                <th className="border px-2 py-1" title="Ponderación">Peso</th>
+                <th className="border px-2 py-1" title="Ponderación">
+                  Peso
+                </th>
                 <th className="border px-2 py-1">Puntaje</th>
               </tr>
             </thead>
@@ -480,7 +562,9 @@ export default function ChecklistForm({ mode, onBack }) {
               {items.map((it, idx) => (
                 <tr key={it.id} className="odd:bg-white even:bg-celeste-50">
                   <td className="border px-2 py-1">{it.id}</td>
-                  <td className="border px-2 py-1" title={it.detail || ""}>{it.label}</td>
+                  <td className="border px-2 py-1" title={it.detail || ""}>
+                    {it.label}
+                  </td>
 
                   {/* Info con tooltip (hover + focus para mobile) */}
                   <td className="border px-2 py-1">
@@ -508,14 +592,18 @@ export default function ChecklistForm({ mode, onBack }) {
                       onChange={(e) =>
                         setItems((prev) =>
                           prev.map((x, i) =>
-                            i === idx ? { ...x, score: Number(e.target.value) } : x
+                            i === idx
+                              ? { ...x, score: Number(e.target.value) }
+                              : x
                           )
                         )
                       }
                       className="border rounded p-1"
                     >
                       {[...Array(11).keys()].map((n) => (
-                        <option key={n} value={n}>{n}</option>
+                        <option key={n} value={n}>
+                          {n}
+                        </option>
                       ))}
                     </select>
                   </td>
@@ -534,15 +622,26 @@ export default function ChecklistForm({ mode, onBack }) {
                 value={obsText}
                 onChange={(e) => setObsText(e.target.value)}
               />
-              <button onClick={addObservation} className="px-4 py-2 bg-gray-800 text-white rounded">
+              <button
+                onClick={addObservation}
+                className="px-4 py-2 bg-gray-800 text-white rounded"
+              >
                 Agregar
               </button>
             </div>
             <ul className="space-y-1">
               {observations.map((o, i) => (
-                <li key={i} className="flex items-center justify-between border rounded p-2 bg-white">
-                  <span><b>{o.n}.</b> {o.text}</span>
-                  <button onClick={() => removeObservation(i)} className="text-sm text-red-600">
+                <li
+                  key={i}
+                  className="flex items-center justify-between border rounded p-2 bg-white"
+                >
+                  <span>
+                    <b>{o.n}.</b> {o.text}
+                  </span>
+                  <button
+                    onClick={() => removeObservation(i)}
+                    className="text-sm text-red-600"
+                  >
                     Quitar
                   </button>
                 </li>
@@ -563,8 +662,26 @@ export default function ChecklistForm({ mode, onBack }) {
               </button>
             )}
             <button
-              onClick={() => setStep("review")}
-              className="px-4 py-2 border border-celeste-700 text-celeste-700 rounded-lg hover:bg-celeste-50"
+              onClick={() => {
+                if (!canProceedToReview()) {
+                  alert(
+                    "Elegí una Región, Zona y Sucursal válidas antes de continuar."
+                  );
+                  return;
+                }
+                setStep("review");
+              }}
+              disabled={!canProceedToReview()}
+              className={`px-4 py-2 rounded-lg border ${
+                canProceedToReview()
+                  ? "border-celeste-700 text-celeste-700 hover:bg-celeste-50"
+                  : "border-gray-300 text-gray-400 cursor-not-allowed"
+              }`}
+              title={
+                canProceedToReview()
+                  ? "Revisar checklist"
+                  : "Seleccioná primero la sucursal"
+              }
             >
               Revisar checklist
             </button>
@@ -574,74 +691,116 @@ export default function ChecklistForm({ mode, onBack }) {
 
       {/* Revisión con semáforos */}
       {step === "review" && (
-        <div className="my-4 p-4 border rounded bg-white">
-          <h3 className="font-bold mb-3 text-reflex">Revisión</h3>
-          <table className="w-full border text-sm mb-4">
-            <thead className="bg-celeste-100">
-              <tr>
-                <th className="border px-2 py-1">Ítem</th>
-                <th className="border px-2 py-1 w-12 text-center">Info</th>
-                <th className="border px-2 py-1">Peso</th>
-                <th className="border px-2 py-1">Puntaje</th>
-                <th className="border px-2 py-1">Semáforo</th>
-              </tr>
-            </thead>
-            <tbody>
-              {items.map((it) => (
-                <tr key={it.id} className="odd:bg-white even:bg-celeste-50">
-                  <td className="border px-2 py-1">{it.label}</td>
+        <div className="my-4">
+          {/* ===== CONTENIDO QUE VA AL PDF (con ref) ===== */}
+          <div
+            ref={reviewRef}
+            id="pdf-root"
+            className="p-4 border rounded bg-white"
+          >
+            <div className="mb-4 text-sm leading-5">
+              <div className="font-semibold text-base mb-1">
+                Detalle de la visita
+              </div>
+              <div>
+                <b>Sucursal:</b>{" "}
+                {branchObj ? `${branchObj.code} — ${branchObj.name}` : "-"}
+              </div>
+              <div>
+                <b>Zona:</b> {branchObj?.zone || "-"} · <b>Región:</b>{" "}
+                {branchObj?.region || "-"}
+              </div>
+              <div>
+                <b>Período:</b> {period?.year || "-"} · Q
+                {period?.quarter || "-"} ·{" "}
+                {MONTHS_ES[Number(period?.month) || 0] ||
+                  `Mes ${period?.month || "-"}`}
+              </div>
+              <div>
+                <b>Supervisor:</b> {supervisor?.name || "-"}{" "}
+                {supervisor?.email ? `(${supervisor.email})` : ""} ·{" "}
+                <b>Tipo:</b>{" "}
+                {supType === "regional" ? "Gerente Regional" : "Gerente Zonal"}
+              </div>
+              <div>
+                <b>Fecha de generación:</b> {new Date().toLocaleString("es-AR")}
+              </div>
+            </div>
+            <h3 className="font-bold mb-3 text-reflex">Revisión</h3>
 
-                  <td className="border px-2 py-1">
-                    <div className="relative group flex justify-center">
-                      <button
-                        type="button"
-                        className="inline-flex items-center justify-center focus:outline-none"
-                        aria-label="Ver detalle del ítem"
-                        tabIndex={0}
-                      >
-                        <InfoIcon className="w-5 h-5 text-gray-500 group-hover:text-gray-700" />
-                      </button>
-                      <span className="pointer-events-none absolute z-10 left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block group-focus-within:block whitespace-pre-line max-w-xs rounded bg-gray-900 text-white text-xs px-2 py-1 shadow">
-                        {it.detail?.trim() ? it.detail : "Sin detalle"}
-                      </span>
-                    </div>
-                  </td>
-
-                  <td className="border px-2 py-1 text-center">
-                    {(it.weight * 100).toFixed(0)}%
-                  </td>
-                  <td className="border px-2 py-1 text-center">{it.score}</td>
-                  <td className="border px-2 py-1">
-                    <div className="flex justify-center">
-                      <span
-                        className={`inline-block w-4 h-4 rounded-full ${
-                          it.score <= 4 ? "bg-red-500" :
-                          it.score <= 7 ? "bg-yellow-400" : "bg-green-500"
-                        }`}
-                        title={it.score <= 4 ? "Rojo" : it.score <= 7 ? "Amarillo" : "Verde"}
-                      />
-                    </div>
-                  </td>
+            <table className="w-full border text-sm mb-4">
+              <thead className="bg-celeste-100">
+                <tr>
+                  <th className="border px-2 py-1">Ítem</th>
+                  <th className="border px-2 py-1 w-12 text-center">Info</th>
+                  <th className="border px-2 py-1">Peso</th>
+                  <th className="border px-2 py-1">Puntaje</th>
+                  <th className="border px-2 py-1">Semáforo</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {items.map((it) => (
+                  <tr key={it.id} className="odd:bg-white even:bg-celeste-50">
+                    <td className="border px-2 py-1">{it.label}</td>
 
-          <div className="mb-3">
-            <b>Observaciones</b>
-            {observations.length ? (
-              <ol className="list-decimal ml-6">
-                {observations.map((o) => <li key={o.n}>{o.text}</li>)}
-              </ol>
-            ) : (
-              <p className="text-gray-600 text-sm">Sin observaciones.</p>
-            )}
+                    {/* Ícono info "estático" para que no rompa el PDF */}
+                    <td className="border px-2 py-1">
+                      <div className="flex justify-center">
+                        <InfoIcon className="w-5 h-5 text-gray-500" />
+                      </div>
+                    </td>
+
+                    <td className="border px-2 py-1 text-center">
+                      {(it.weight * 100).toFixed(0)}%
+                    </td>
+                    <td className="border px-2 py-1 text-center">{it.score}</td>
+                    <td className="border px-2 py-1">
+                      <div className="flex justify-center">
+                        <span
+                          className={`inline-block w-4 h-4 rounded-full ${
+                            it.score <= 4
+                              ? "bg-red-500"
+                              : it.score <= 7
+                              ? "bg-yellow-400"
+                              : "bg-green-500"
+                          }`}
+                          title={
+                            it.score <= 4
+                              ? "Rojo"
+                              : it.score <= 7
+                              ? "Amarillo"
+                              : "Verde"
+                          }
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            <div className="mb-3">
+              <b>Observaciones</b>
+              {observations.length ? (
+                <ol className="list-decimal ml-6">
+                  {observations.map((o) => (
+                    <li key={o.n}>{o.text}</li>
+                  ))}
+                </ol>
+              ) : (
+                <p className="text-gray-600 text-sm">Sin observaciones.</p>
+              )}
+            </div>
+
+            <p className="text-lg font-bold">Puntaje final: {total}</p>
           </div>
 
-          <p className="text-lg font-bold mb-4">Puntaje final: {total}</p>
-
-          <div className="flex gap-3 flex-wrap">
-            <button onClick={() => setStep("edit")} className="px-4 py-2 border rounded">
+          {/* ===== ACCIONES (fuera del ref) ===== */}
+          <div className="mt-4 flex gap-3 flex-wrap">
+            <button
+              onClick={() => setStep("edit")}
+              className="px-4 py-2 border rounded"
+            >
               Volver a editar
             </button>
             <button
@@ -649,7 +808,9 @@ export default function ChecklistForm({ mode, onBack }) {
               disabled={sending}
               className="px-6 py-3 bg-gray-800 text-white rounded-xl hover:bg-gray-900"
             >
-              {sending && action === "save" ? "Guardando…" : "Guardar evaluación"}
+              {sending && action === "save"
+                ? "Guardando…"
+                : "Guardar evaluación"}
             </button>
             <button
               onClick={() => submit("send")}
@@ -657,6 +818,19 @@ export default function ChecklistForm({ mode, onBack }) {
               className="px-6 py-3 bg-reflex text-white rounded-xl hover:bg-celeste-700"
             >
               {sending && action === "send" ? "Enviando…" : "Enviar por correo"}
+            </button>
+
+            <button
+              onClick={exportPDF}
+              disabled={!exportEnabled}
+              className={`px-6 py-3 rounded-xl border ${
+                exportEnabled
+                  ? "border-celeste-700 text-celeste-700 hover:bg-celeste-50"
+                  : "border-gray-300 text-gray-400 cursor-not-allowed"
+              }`}
+              title={exportEnabled ? "Exportar PDF" : "Guardá o enviá primero"}
+            >
+              Exportar a PDF
             </button>
           </div>
         </div>
