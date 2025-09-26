@@ -5,6 +5,14 @@ import supervisorsMap from "./supervisors.json";
 
 const API_URL = import.meta.env.VITE_API_URL; // Web App de Apps Script
 
+// Ícono info (SVG simple)
+const InfoIcon = ({ className = "w-5 h-5" }) => (
+  <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden="true">
+    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+    <path d="M12 11v6m0-10h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+);
+
 function getCurrentPeriod(d = new Date()) {
   const m = d.getMonth() + 1;
   const quarter = m <= 3 ? 1 : m <= 6 ? 2 : m <= 9 ? 3 : 4;
@@ -170,7 +178,7 @@ export default function ChecklistForm({ mode, onBack }) {
     if (!API_URL) return "Falta VITE_API_URL en .env";
     if (!branchObj) return "Elegí una sucursal";
     if (!supervisor.name || !supervisor.email)
-      return "Seleccioná Zonal o Regional (supervisor inválido)";
+      return "Supervisor inválido (no se encontró Gerente Zonal para la sucursal)";
     for (const it of items) {
       const sc = Number(it.score);
       if (Number.isNaN(sc) || sc < 0 || sc > 10) {
@@ -181,7 +189,6 @@ export default function ChecklistForm({ mode, onBack }) {
   }
 
   // POST (guardar / enviar)
-
   const ENV = import.meta.env.VITE_ENV || "DEV";
 
   async function submit(kind) {
@@ -214,7 +221,6 @@ export default function ChecklistForm({ mode, onBack }) {
         mode: "no-cors",
         body: JSON.stringify(payload),
       });
-      // Mensaje honesto según ENV
       if (kind === "send") {
         alert(
           willSend
@@ -237,10 +243,7 @@ export default function ChecklistForm({ mode, onBack }) {
 
   return (
     <div className="p-4 max-w-5xl mx-auto">
-      <button
-        onClick={onBack}
-        className="mb-4 text-celeste-700 hover:underline"
-      >
+      <button onClick={onBack} className="mb-4 text-celeste-700 hover:underline">
         ← Volver
       </button>
 
@@ -308,11 +311,13 @@ export default function ChecklistForm({ mode, onBack }) {
         </div>
       </div>
 
-      {/* Supervisor (Zonal/Regional) + info sucursal */}
-      <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Supervisor (solo Zonal) + info sucursal */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        {/* Panel Supervisor */}
         <div>
           <label className="block mb-1 font-semibold">Supervisor</label>
           <div className="flex items-center gap-4 mb-2">
+            {/* Mostramos sólo Zonal, dejando la lógica viva */}
             <label className="inline-flex items-center gap-2">
               <input
                 type="radio"
@@ -322,7 +327,8 @@ export default function ChecklistForm({ mode, onBack }) {
               />
               <span>Gerente Zonal</span>
             </label>
-            <label className="inline-flex items-center gap-2">
+            {/* Regional oculto para posibles futuros cambios */}
+            {/* <label className="inline-flex items-center gap-2 hidden">
               <input
                 type="radio"
                 value="regional"
@@ -330,7 +336,7 @@ export default function ChecklistForm({ mode, onBack }) {
                 onChange={(e) => setSupType(e.target.value)}
               />
               <span>Gerente Regional</span>
-            </label>
+            </label> */}
           </div>
           <div className="p-3 border rounded bg-celeste-50">
             <div className="text-sm text-gray-700">
@@ -344,6 +350,7 @@ export default function ChecklistForm({ mode, onBack }) {
           </div>
         </div>
 
+        {/* Panel Sucursal */}
         <div className="text-sm text-gray-700 p-3 border rounded bg-white">
           <div>
             <b>Región:</b> {branchObj?.region}
@@ -357,7 +364,7 @@ export default function ChecklistForm({ mode, onBack }) {
         </div>
       </div>
 
-      {/* Ítems (sin columna de obs por ítem) */}
+      {/* Ítems (con columna Info) */}
       {step === "edit" && (
         <>
           <table className="w-full border text-sm mb-4">
@@ -365,6 +372,7 @@ export default function ChecklistForm({ mode, onBack }) {
               <tr>
                 <th className="border px-2 py-1">ID</th>
                 <th className="border px-2 py-1">Ítem</th>
+                <th className="border px-2 py-1 w-12 text-center">Info</th>
                 <th className="border px-2 py-1" title="Ponderación">
                   Peso
                 </th>
@@ -378,6 +386,24 @@ export default function ChecklistForm({ mode, onBack }) {
                   <td className="border px-2 py-1" title={it.detail || ""}>
                     {it.label}
                   </td>
+
+                  {/* Info con tooltip (hover + focus para mobile) */}
+                  <td className="border px-2 py-1">
+                    <div className="relative group flex justify-center">
+                      <button
+                        type="button"
+                        className="inline-flex items-center justify-center focus:outline-none"
+                        aria-label="Ver detalle del ítem"
+                        tabIndex={0}
+                      >
+                        <InfoIcon className="w-5 h-5 text-gray-500 group-hover:text-gray-700" />
+                      </button>
+                      <span className="pointer-events-none absolute z-10 left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block group-focus-within:block whitespace-pre-line max-w-xs rounded bg-gray-900 text-white text-xs px-2 py-1 shadow">
+                        {it.detail?.trim() ? it.detail : "Sin detalle"}
+                      </span>
+                    </div>
+                  </td>
+
                   <td className="border px-2 py-1 text-center">
                     {(it.weight * 100).toFixed(0)}%
                   </td>
@@ -474,6 +500,7 @@ export default function ChecklistForm({ mode, onBack }) {
             <thead className="bg-celeste-100">
               <tr>
                 <th className="border px-2 py-1">Ítem</th>
+                <th className="border px-2 py-1 w-12 text-center">Info</th>
                 <th className="border px-2 py-1">Peso</th>
                 <th className="border px-2 py-1">Puntaje</th>
                 <th className="border px-2 py-1">Semáforo</th>
@@ -483,6 +510,24 @@ export default function ChecklistForm({ mode, onBack }) {
               {items.map((it) => (
                 <tr key={it.id} className="odd:bg-white even:bg-celeste-50">
                   <td className="border px-2 py-1">{it.label}</td>
+
+                  {/* Info con tooltip (hover + focus para mobile) */}
+                  <td className="border px-2 py-1">
+                    <div className="relative group flex justify-center">
+                      <button
+                        type="button"
+                        className="inline-flex items-center justify-center focus:outline-none"
+                        aria-label="Ver detalle del ítem"
+                        tabIndex={0}
+                      >
+                        <InfoIcon className="w-5 h-5 text-gray-500 group-hover:text-gray-700" />
+                      </button>
+                      <span className="pointer-events-none absolute z-10 left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block group-focus-within:block whitespace-pre-line max-w-xs rounded bg-gray-900 text-white text-xs px-2 py-1 shadow">
+                        {it.detail?.trim() ? it.detail : "Sin detalle"}
+                      </span>
+                    </div>
+                  </td>
+
                   <td className="border px-2 py-1 text-center">
                     {(it.weight * 100).toFixed(0)}%
                   </td>
@@ -528,10 +573,7 @@ export default function ChecklistForm({ mode, onBack }) {
           <p className="text-lg font-bold mb-4">Puntaje final: {total}</p>
 
           <div className="flex gap-3 flex-wrap">
-            <button
-              onClick={() => setStep("edit")}
-              className="px-4 py-2 border rounded"
-            >
+            <button onClick={() => setStep("edit")} className="px-4 py-2 border rounded">
               Volver a editar
             </button>
             <button
@@ -539,9 +581,7 @@ export default function ChecklistForm({ mode, onBack }) {
               disabled={sending}
               className="px-6 py-3 bg-gray-800 text-white rounded-xl hover:bg-gray-900"
             >
-              {sending && action === "save"
-                ? "Guardando…"
-                : "Guardar evaluación"}
+              {sending && action === "save" ? "Guardando…" : "Guardar evaluación"}
             </button>
             <button
               onClick={() => submit("send")}
